@@ -6,7 +6,7 @@ import 'react-dates/lib/css/_datepicker.css'
 export default class ExpenseComponent extends React.Component {
 
     constructor(props){
-     
+        super(props)
         this.state = {
             description: props.expense ? props.expense.description : '',
             note: props.expense ? props.expense.note : '',
@@ -67,19 +67,21 @@ export default class ExpenseComponent extends React.Component {
         return (
             <div>
                 {
-                    this.state.error && <p>Este es un error: {this.state.error}</p>
+                    this.state.error && <p className="form__error">Este es un error: {this.state.error}</p>
                 }
-                <form onSubmit={this.onSubmit}>
+                <form className="form" onSubmit={this.onSubmit}>
                     <input 
+                        className="text-input"
                         type="text"
-                        placeholder="Description"
+                        placeholder="Descripción"
                         autoFocus
                         value={this.state.description}
                         onChange= {this.onDescriptionChange}            
                     />
                     <input 
+                        className="text-input"
                         type="text"
-                        placeholder="Amount"
+                        placeholder="Monto"
                         value={this.state.amount}
                         onChange= {this.onAmoutChange}
                     />
@@ -92,11 +94,12 @@ export default class ExpenseComponent extends React.Component {
                         isOutsideRange={ ()=> false}
                     />
                     <textarea 
-                        placeholder="Add a note for your expense"
+                        className="textarea"
+                        placeholder="Agrega una nota para identificar"
                         value={this.state.note}
                         onChange = {this.onNoteChange}
                     ></textarea>
-                    <button>Add Expense</button>
+                    <button className="button">Agregar gasto</button>
                 </form>
             </div>
         );
